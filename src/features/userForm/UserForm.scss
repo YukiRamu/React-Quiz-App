@@ -1,0 +1,32 @@
+.userFormContainer {
+  width: 90%;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  h1 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+  }
+  form {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .userForm {
+      label {
+        text-align: left;
+      }
+    }
+    .startBtn {
+      margin: auto;
+      text-align: center;
+      width: 10vw;
+      margin-top: 2rem;
+    }
+  }
+}
