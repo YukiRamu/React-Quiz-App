@@ -5,9 +5,11 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffc0cb;
   flex-direction: row;
   width: 100%;
   padding: 1rem 0;
+  padding-top: 2rem;
   height: 50px;
+  margin-bottom: 1rem;
+  color: $textColor2;
 }

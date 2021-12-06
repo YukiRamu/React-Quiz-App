@@ -3,7 +3,6 @@ import "./QuizPanel.scss";
 import {
   Container,
   Row,
-  Col,
   Button,
   Form
 } from 'react-bootstrap';
@@ -12,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { selectCategory } from '../userForm/categorySlice';
 import { selectQuiz, setQuiz } from './quizSlice';
 import { showAlert } from "../alertMsg/alertMsgSlice";
-import { Navigate } from 'react-router';
+import Loading from '../loading/Loading';
 
 const QuizPanel = () => {
 
@@ -25,14 +24,8 @@ const QuizPanel = () => {
   const dispatch = useDispatch();
 
   //private state
-  const [answer, setAnswer] = useState([]);
-  const [checked, setChecked] = useState({
-    answer: "",
-    isChecked: false
-  });
+  const [checked, setChecked] = useState([]);
   const [count, setCount] = useState();
-
-  console.log(checked);
 
   //method
   const getCategoryId = async (topic) => {
@@ -50,7 +43,6 @@ const QuizPanel = () => {
       } else {
         //get data
         const quizData = await response.json();
-        console.log(quizData.results.length);
         if (quizData.results.length === 0) {
           dispatch(showAlert({
             message: "Sorry no quiz list prepared :( Please select another topic",
@@ -69,20 +61,27 @@ const QuizPanel = () => {
   }, []);
 
   const handleChange = (questionNum, input) => {
-    checked === false && setChecked({
-      answer: input,
-      isChecked: true
-    });
-    setAnswer([...answer, {
-      questionNum,
-      input
-    }]);
+    //first time check answer
+    if (checked.findIndex(e => e.questionNum === questionNum) === -1) {
+      setChecked([...checked, {
+        questionNum,
+        answer: input,
+        isChecked: true
+      }]);
+    } else {
+      //change answer
+      setChecked(checked.map(el => (el.questionNum === questionNum ? {
+        questionNum,
+        answer: input,
+        isChecked: true
+      } : el)));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     //validation check
-    if (answer.length !== 10) {
+    if (checked.length !== 10) {
       dispatch(showAlert({
         message: "Please answer all questions",
         variant: "danger",
@@ -90,11 +89,16 @@ const QuizPanel = () => {
       return false;
     } else {
       //check answer
-      const answerArray = quiz.quizList.map(elem => elem.correct_answer);
-      const inputArray = answer.map(elem => elem.input);
+      const answerArray = quiz.quizList.map((elem, index) => ({
+        questionNum: index + 1,
+        correctAnswer: elem.correct_answer
+      }));
+
+      const inputArray = checked.sort((a, b) => (a.questionNum - b.questionNum));
+
       let count = 0;
       for (let i = 0; i < answerArray.length; i++) {
-        if (answerArray[i] === inputArray[i]) {
+        if (answerArray[i].correctAnswer === inputArray[i].answer) {
           count++;
         }
       }
@@ -102,9 +106,13 @@ const QuizPanel = () => {
     }
   };
 
+  const navigateHome = () => {
+    navigate("/");
+  };
+
   return (
     <>
-      <Container fluid classname="quizPanelContainer">
+      <Container fluid className="quizPanelContainer">
         {quiz.quizList.length !== 0 ? (
           <>
             <Row>
@@ -113,18 +121,19 @@ const QuizPanel = () => {
                   <Form
                     className="quizForm">
                     <p key={index}>{index + 1}: {elem.question}</p>
-                    <Form.Group>
+                    <Form.Group className="checkBox">
                       <Form.Check
                         type="radio"
                         value="True"
                         label="True"
-                        checked={checked.answer === Option.value}
+                        checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "True"}
+
                         onChange={() => handleChange(index + 1, "True")} />
                       <Form.Check
                         type="radio"
                         value="False"
                         label="False"
-                        checked={checked.answer === Option.value}
+                        checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "False"}
                         onChange={() => handleChange(index + 1, "False")} />
                     </Form.Group>
                   </Form>
@@ -134,14 +143,17 @@ const QuizPanel = () => {
                 className="submitBtn"
                 type="button"
                 onClick={handleSubmit}>Submit Answer</Button>
+              <Button
+                className="submitBtn"
+                type="button"
+                onClick={navigateHome}>Return to Home</Button>
               {/* display count */}
-              {count !== undefined && <p>Your Score is : {count}/10</p>}
+              {count !== undefined && <p className="score">Your Score is : <span>{count}/10</span></p>}
             </Row>
           </>
         ) :
-          (<h3 className="loading">Loading...</h3>)}
+          (<Loading />)}
       </Container>
-
     </>
   );
 };

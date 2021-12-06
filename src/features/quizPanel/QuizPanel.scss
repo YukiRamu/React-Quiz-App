@@ -1,15 +1,39 @@
 @import "../../utils/component";
 
 .quizPanelContainer {
-  .submitBtn {
-    width: 30%;
-    margin: auto;
-    margin-top: 1rem;
+  padding: 0 2rem;
+  .row {
+    padding-bottom: 2rem;
+    .quizForm {
+      padding: 0 2rem !important;
+      p {
+        font-weight: bold;
+      }
+      .checkBox {
+        margin-bottom: 1rem;
+      }
+    }
+    .submitBtn {
+      width: 30% !important;
+      margin: auto !important;
+      margin-top: 1rem !important;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      transition: all 0.5s ease-in-out;
+      background-color: $accent;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    .score {
+      margin-top: 1rem;
+      font-size: 2rem;
+      text-align: center;
+      span {
+        color: red;
+        font-weight: bold;
+      }
+    }
   }
-}
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
