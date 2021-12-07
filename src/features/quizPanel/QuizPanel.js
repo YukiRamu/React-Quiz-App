@@ -143,8 +143,6 @@ const QuizPanel = () => {
                 className="submitBtn"
                 type="button"
                 onClick={handleSubmit}>Submit Answer</Button>
-              {/* display count */}
-              {/* {count !== undefined && <p className="score">Your Score is : <span>{count}/10</span></p>} */}
             </Row>
             {/* Score modal */}
             {count !== undefined && (
