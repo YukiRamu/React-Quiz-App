@@ -17,15 +17,18 @@
     .modal-body {
       .score {
         margin-top: 1rem;
-        font-size: 2rem;
+        font-size: 3rem;
         text-align: center;
-        color: $accent2;
         font-weight: bold;
+        span {
+          color: $accent2;
+        }
       }
     }
     .modal-footer {
       border-top: none;
-      .submitBtn {
+      .toHomeBtn,
+      .toAnswerBtn {
         width: 30%;
         margin: auto;
         margin-top: 1rem;

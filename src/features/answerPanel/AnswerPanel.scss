@@ -1,6 +1,6 @@
 @import "../../utils/component";
 
-.quizPanelContainer {
+.answerPanelContainer {
   background-color: $glassEffect;
   backdrop-filter: blur(10px);
   border-radius: 5px;
@@ -9,20 +9,25 @@
   padding: 1rem;
   margin-bottom: 1rem;
   .row {
-    padding-bottom: 2rem;
     h2 {
       text-align: center;
     }
-    .quizForm {
-      padding: 0 2rem !important;
-      p {
-        font-weight: bold;
+    .answer {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 1rem;
+      .correctAnswer {
+        color: $accent2;
       }
-      .checkBox {
-        margin-bottom: 1rem;
+      .correct {
+        color: green;
+      }
+      .wrong {
+        color: red;
       }
     }
-    .submitBtn {
+    .toHomeBtn {
       width: 30%;
       margin: auto;
       margin-top: 1rem;

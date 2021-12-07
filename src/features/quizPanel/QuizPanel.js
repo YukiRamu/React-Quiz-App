@@ -9,7 +9,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectCategory } from '../userForm/categorySlice';
-import { selectQuiz, setQuiz } from './quizSlice';
+import { selectQuiz, setQuiz, setInputAnswer } from './quizSlice';
 import { showAlert } from "../alertMsg/alertMsgSlice";
 import Loading from '../loading/Loading';
 import Score from '../score/Score';
@@ -96,7 +96,11 @@ const QuizPanel = () => {
         correctAnswer: elem.correct_answer
       }));
 
+      //sort answer
       const inputArray = checked.sort((a, b) => (a.questionNum - b.questionNum));
+
+      //dispatch to reducer for answer page
+      dispatch(setInputAnswer(inputArray))
 
       let count = 0;
       for (let i = 0; i < answerArray.length; i++) {
@@ -104,6 +108,7 @@ const QuizPanel = () => {
           count++;
         }
       }
+      //calculate the number of correct answer
       setCount(count);
       //show score modal
       setModalShow(true);
@@ -116,6 +121,7 @@ const QuizPanel = () => {
         {quiz.quizList.length !== 0 ? (
           <>
             <Row>
+              <h2>Quiz</h2>
               {quiz.quizList.map((elem, index) => (
                 <>
                   <Form
@@ -127,7 +133,6 @@ const QuizPanel = () => {
                         value="True"
                         label="True"
                         checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "True"}
-
                         onChange={() => handleChange(index + 1, "True")} />
                       <Form.Check
                         type="radio"

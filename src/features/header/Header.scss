@@ -1,12 +1,7 @@
 @import "../../utils/component";
 
 header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
   width: 90%;
-  height: 50px;
   padding: 1rem 0;
   padding-top: 2rem;
   margin: 1rem auto;
@@ -20,5 +15,12 @@ header {
     span {
       color: $accent2;
     }
+  }
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
   }
 }

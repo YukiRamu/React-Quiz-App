@@ -11,8 +11,12 @@ const Score = (props) => {
   //router
   const navigate = useNavigate();
 
-  const navigateHome = () => {
-    navigate("/");
+  const navigateTo = (location) => {
+    if (location === "home") {
+      navigate("/");
+    } else {
+      navigate("/answer");
+    };
     props.onHide();
   };
 
@@ -33,14 +37,18 @@ const Score = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p className="score">
-            {props.count} / 10
+           <span>{props.count}</span> / 10
           </p>
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="submitBtn"
+            className="toHomeBtn"
             type="button"
-            onClick={navigateHome}>Return to Home</Button>
+            onClick={() => navigateTo("home")}>Return to Home</Button>
+          <Button
+            className="toAnswerBtn"
+            type="button"
+            onClick={() => navigateTo("answer")}>Check correct answer</Button>
         </Modal.Footer>
       </Modal>
 
