@@ -12,6 +12,7 @@ import { selectCategory } from '../userForm/categorySlice';
 import { selectQuiz, setQuiz } from './quizSlice';
 import { showAlert } from "../alertMsg/alertMsgSlice";
 import Loading from '../loading/Loading';
+import Score from '../score/Score';
 
 const QuizPanel = () => {
 
@@ -26,6 +27,7 @@ const QuizPanel = () => {
   //private state
   const [checked, setChecked] = useState([]);
   const [count, setCount] = useState();
+  const [modalShow, setModalShow] = useState(false);
 
   //method
   const getCategoryId = async (topic) => {
@@ -103,11 +105,9 @@ const QuizPanel = () => {
         }
       }
       setCount(count);
+      //show score modal
+      setModalShow(true);
     }
-  };
-
-  const navigateHome = () => {
-    navigate("/");
   };
 
   return (
@@ -143,13 +143,16 @@ const QuizPanel = () => {
                 className="submitBtn"
                 type="button"
                 onClick={handleSubmit}>Submit Answer</Button>
-              <Button
-                className="submitBtn"
-                type="button"
-                onClick={navigateHome}>Return to Home</Button>
               {/* display count */}
-              {count !== undefined && <p className="score">Your Score is : <span>{count}/10</span></p>}
+              {/* {count !== undefined && <p className="score">Your Score is : <span>{count}/10</span></p>} */}
             </Row>
+            {/* Score modal */}
+            {count !== undefined && (
+              <Score
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                count={count} />
+            )}
           </>
         ) :
           (<Loading />)}

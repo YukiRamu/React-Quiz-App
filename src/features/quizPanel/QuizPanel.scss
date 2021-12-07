@@ -1,7 +1,13 @@
 @import "../../utils/component";
 
 .quizPanelContainer {
-  padding: 0 2rem;
+  background-color: $glassEffect;
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  width: 90% !important;
+  padding: 1rem;
+  margin-bottom: 1rem;
   .row {
     padding-bottom: 2rem;
     .quizForm {
@@ -14,9 +20,9 @@
       }
     }
     .submitBtn {
-      width: 30% !important;
-      margin: auto !important;
-      margin-top: 1rem !important;
+      width: 30%;
+      margin: auto;
+      margin-top: 1rem;
       border: none;
       outline: none;
       box-shadow: none;
@@ -24,15 +30,6 @@
       background-color: $accent;
       &:hover {
         transform: scale(1.05);
-      }
-    }
-    .score {
-      margin-top: 1rem;
-      font-size: 2rem;
-      text-align: center;
-      span {
-        color: red;
-        font-weight: bold;
       }
     }
   }

@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/mixins/_breakpoints.scss";
+
 /* color palette */
 $textColor1: black;
 $textColor2: white;
-$bgColor: #f2f4e8;
-$boxColor: #b4b7a2;
+$background: radial-gradient(circle 200px at center, #81f7fddf 0%, #6ad6f1ec 50%, #74c3fc 100%);
 $accent: #eba15a;
+$accent2: #e93667;
+$glassEffect: #ffffff26;

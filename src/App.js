@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter  as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import './App.scss';
 import AlertMsg from './features/alertMsg/AlertMsg';
 import Wrapper from './features/wrapper/Wrapper';
@@ -18,7 +18,7 @@ const App = () => {
           </Routes>
         </Wrapper>
       </Router>
-      <AlertMsg/>
+      <AlertMsg />
     </>
   );
 };

@@ -1,0 +1,43 @@
+@import "../../utils/component";
+
+.scoreModal {
+  font-family: "Cuprum", sans-serif !important;
+  .modal-content {
+    padding: 1rem;
+    background-color: #ffffff4d;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+    border: none;
+    color: $textColor2;
+    .modal-header {
+      justify-content: center;
+      border-bottom: none;
+    }
+    .modal-body {
+      .score {
+        margin-top: 1rem;
+        font-size: 2rem;
+        text-align: center;
+        color: $accent2;
+        font-weight: bold;
+      }
+    }
+    .modal-footer {
+      border-top: none;
+      .submitBtn {
+        width: 30%;
+        margin: auto;
+        margin-top: 1rem;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        transition: all 0.5s ease-in-out;
+        background-color: $accent;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

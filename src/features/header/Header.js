@@ -14,7 +14,7 @@ const Header = () => {
     <>
       <header>
         <h1>Hi {userInfo.username}!</h1>
-        <h2>Topic is {category.topic}</h2>
+        <h2>Topic is <span>{category.topic}</span></h2>
       </header>
     </>
   );
