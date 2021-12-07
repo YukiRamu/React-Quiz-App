@@ -100,7 +100,7 @@ const QuizPanel = () => {
       const inputArray = checked.sort((a, b) => (a.questionNum - b.questionNum));
 
       //dispatch to reducer for answer page
-      dispatch(setInputAnswer(inputArray))
+      dispatch(setInputAnswer(inputArray));
 
       let count = 0;
       for (let i = 0; i < answerArray.length; i++) {
@@ -123,26 +123,25 @@ const QuizPanel = () => {
             <Row>
               <h2>Quiz</h2>
               {quiz.quizList.map((elem, index) => (
-                <>
-                  <Form
-                    className="quizForm">
-                    <p key={index}>{index + 1}: {elem.question}</p>
-                    <Form.Group className="checkBox">
-                      <Form.Check
-                        type="radio"
-                        value="True"
-                        label="True"
-                        checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "True"}
-                        onChange={() => handleChange(index + 1, "True")} />
-                      <Form.Check
-                        type="radio"
-                        value="False"
-                        label="False"
-                        checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "False"}
-                        onChange={() => handleChange(index + 1, "False")} />
-                    </Form.Group>
-                  </Form>
-                </>
+                <Form
+                  key={index}
+                  className="quizForm">
+                  <p>{index + 1}: {elem.question}</p>
+                  <Form.Group className="checkBox">
+                    <Form.Check
+                      type="radio"
+                      value="True"
+                      label="True"
+                      checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "True"}
+                      onChange={() => handleChange(index + 1, "True")} />
+                    <Form.Check
+                      type="radio"
+                      value="False"
+                      label="False"
+                      checked={checked.findIndex(e => e.questionNum === index + 1) !== -1 && checked[checked.findIndex(e => e.questionNum === index + 1)].isChecked === true && checked[checked.findIndex(e => e.questionNum === index + 1)].answer === "False"}
+                      onChange={() => handleChange(index + 1, "False")} />
+                  </Form.Group>
+                </Form>
               ))}
               <Button
                 className="submitBtn"

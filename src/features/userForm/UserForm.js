@@ -87,9 +87,7 @@ const UserForm = () => {
               onChange={(e) => setOption(e.target.value)}>
               <option>Choose...</option>
               {category.categoryList.map((elem, index) => (
-                <>
-                  <option key={index}>{elem.name}</option>
-                </>
+                <option key={index}>{elem.name}</option>
               ))}
             </Form.Select>
           </Form.Group>

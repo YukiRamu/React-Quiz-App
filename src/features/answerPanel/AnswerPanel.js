@@ -25,18 +25,16 @@ const AnswerPanel = () => {
           <Row>
             <h2>Answer</h2>
             {quiz.quizList.map((elem, index) => (
-              <>
-                <div key={index}>
-                  <p>{index + 1}: {elem.question}</p>
-                  <div className="answer">
-                    <p className="correctAnswer">{elem.correct_answer}</p>
-                    <p className="inputAnswer">(Your Anwer is : {quiz.inputAnswer[index].answer})</p>
-                    {elem.correct_answer === quiz.inputAnswer[index].answer ?
-                      <BsCheckLg className="correct" /> :
-                      <BsXLg className="wrong" />}
-                  </div>
+              <div key={index}>
+                <p>{index + 1}: {elem.question}</p>
+                <div className="answer">
+                  <p className="correctAnswer">{elem.correct_answer}</p>
+                  <p className="inputAnswer">(Your Anwer is : {quiz.inputAnswer[index].answer})</p>
+                  {elem.correct_answer === quiz.inputAnswer[index].answer ?
+                    <BsCheckLg className="correct" /> :
+                    <BsXLg className="wrong" />}
                 </div>
-              </>
+              </div>
             ))}
             <Button
               className="toHomeBtn"
